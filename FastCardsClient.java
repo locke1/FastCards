@@ -6,7 +6,7 @@ public class FastCardsClient {
     public static void main(String[] args) {
         WelcomeFrame welcomeFrame = new WelcomeFrame();
         welcomeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        welcomeFrame.setSize(693, 721);
+        welcomeFrame.setSize(400, 150);
         welcomeFrame.setVisible(true);
     }
 }
