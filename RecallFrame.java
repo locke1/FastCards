@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 public class RecallFrame extends JFrame {
     private static GridBagLayout layout;
     private static GridBagConstraints constraints;
+    private static JPanel graphicsContext;
     private static JTextField questionField, answerField;
     private static JButton showAnswerButton, nextCardButton;
     private static JButton setHighPriorityButton, setMedPriorityButton, setLowPriorityButton;
@@ -26,11 +27,8 @@ public class RecallFrame extends JFrame {
         constraints.weighty = 4;
 
         // insert question field:
-        questionField = new JTextField(30);
-        questionField.setEditable(false);
-        currentCard = CardLists.getNextCard();
-        questionField.setText(currentCard.getQuestion());
-        addComponent(questionField, 0, 0, 4, 1);
+        graphicsContext = new GraphicsContext();
+        addComponent(graphicsContext, 0, 0, 4, 1);
 
         // insert answer field:
         answerField = new JTextField(30);
@@ -105,4 +103,18 @@ public class RecallFrame extends JFrame {
         layout.setConstraints(component, constraints);
         add(component);
     }
+
+    private class GraphicsContext extends JPanel {
+        public GraphicsContext() {
+            currentCard = CardLists.getNextCard();
+        }
+        @Override
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            setBackground(Color.WHITE);
+            g.setColor(Color.BLUE);
+            g.drawString(currentCard.getQuestion(), 50, 50);
+        }
+    }
+        
 }
