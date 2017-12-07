@@ -1,14 +1,17 @@
 # FastCards
 # Dec 2017
-# locke
+# locke1
+
+TO ENSURE THAT CARDS SAVE, EXIT APPLICATION BY CLICKING THE RED X ON THE WINDOW
+i.e. do not exit with ctrl+c or similar.
 
 Design requirements:
 [ ] Includes String entry mode: Takes front, back, and priority (high, med, or low) of a flashcard from textfields and buttons and saves it in a Card (satisfies GUI and graphics)
 [ ] Includes number entry mode: only ints are allowed on back of cards. Maybe that’s for times tables, etc. (satisfies exception handling)
 [ ] Includes recall mode, where cards are displayed using g.drawString() in order of priority, then asks for a new priority setting.
-[ ] (Optional) Includes active recall mode, where you have to enter the answer, and you get it wrong, you have to copy the answer exactly. Don’t except the answer until the text matches perfectly.
-[ ] (Optional) Cards can be saved between sessions.
-[ ] (Optional) Consider implementing concurrency.
+[ ](Optional) Includes active recall mode, where you have to enter the answer, and you get it wrong, you have to copy the answer exactly. Don’t except the answer until the text matches perfectly.
+[ ](Optional) Cards can be saved between sessions.
+[ ](Optional) Consider implementing concurrency.
 
 Classes:
 * FastCards contains main.

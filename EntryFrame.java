@@ -18,8 +18,6 @@ public class EntryFrame extends JFrame {
     public EntryFrame() {
         super("Entering new cards");
 
-        CreateCardFiles.openCardsFile();
-
         // initialize layout:
         layout = new GridBagLayout();
         setLayout(layout);
@@ -52,8 +50,6 @@ public class EntryFrame extends JFrame {
                     String a = answerField.getText();
                     Card card = new Card(q, a);
                     CardLists.addToHighPriorityList(card);
-                    CreateCardFiles.addCardToFile(card);
-
                     questionField.setText("Added to high priority list. Enter another question here...");
                     answerField.setText("Enter another answer here...");
                     WelcomeFrame.resetCounterLabels();
@@ -70,8 +66,6 @@ public class EntryFrame extends JFrame {
                     String a = answerField.getText();
                     Card card = new Card(q, a);
                     CardLists.addToMedPriorityList(card);
-                    CreateCardFiles.addCardToFile(card);
-
                     questionField.setText("Added to Med priority list. Enter another question here...");
                     answerField.setText("Enter another answer here...");
                     WelcomeFrame.resetCounterLabels();
@@ -88,8 +82,6 @@ public class EntryFrame extends JFrame {
                     String a = answerField.getText();
                     Card card = new Card(q, a);
                     CardLists.addToLowPriorityList(card);
-                    CreateCardFiles.addCardToFile(card);
-
                     questionField.setText("Added to low priority list. Enter another question here...");
                     answerField.setText("Enter another answer here...");
                     WelcomeFrame.resetCounterLabels();
@@ -98,25 +90,6 @@ public class EntryFrame extends JFrame {
         );
 
         // create new card button handler adds Card to RecallFrame.addHighPriorityCard(newCard);
-    }
-
-    public static void addToHighPriorityList() {
-        String q = questionField.getText();
-        String a = answerField.getText();
-        Card card = new Card(q, a);
-        CardLists.addToHighPriorityList(card);
-    }
-    public static void addToMedPriorityList() {
-        String q = questionField.getText();
-        String a = answerField.getText();
-        Card card = new Card(q, a);
-        CardLists.addToMedPriorityList(card);
-    }
-    public static void addToLowPriorityList() {
-        String q = questionField.getText();
-        String a = answerField.getText();
-        Card card = new Card(q, a);
-        CardLists.addToLowPriorityList(card);
     }
 
     private void addComponent(Component component,
