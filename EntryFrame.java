@@ -13,9 +13,12 @@ public class EntryFrame extends JFrame {
                             addWithMedPriorityButton,
                             addWithLowPriorityButton;
     private static JTextField questionField, answerField;
+    private static Card currentCard;
 
     public EntryFrame() {
         super("Entering new cards");
+
+        CreateCardFiles.openCardsFile();
 
         // initialize layout:
         layout = new GridBagLayout();
@@ -49,6 +52,7 @@ public class EntryFrame extends JFrame {
                     String a = answerField.getText();
                     Card card = new Card(q, a);
                     CardLists.addToHighPriorityList(card);
+                    CreateCardFiles.addCardToFile(card);
 
                     questionField.setText("Added to high priority list. Enter another question here...");
                     answerField.setText("Enter another answer here...");
@@ -66,6 +70,7 @@ public class EntryFrame extends JFrame {
                     String a = answerField.getText();
                     Card card = new Card(q, a);
                     CardLists.addToMedPriorityList(card);
+                    CreateCardFiles.addCardToFile(card);
 
                     questionField.setText("Added to Med priority list. Enter another question here...");
                     answerField.setText("Enter another answer here...");
@@ -83,6 +88,7 @@ public class EntryFrame extends JFrame {
                     String a = answerField.getText();
                     Card card = new Card(q, a);
                     CardLists.addToLowPriorityList(card);
+                    CreateCardFiles.addCardToFile(card);
 
                     questionField.setText("Added to low priority list. Enter another question here...");
                     answerField.setText("Enter another answer here...");

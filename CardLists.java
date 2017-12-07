@@ -50,7 +50,7 @@ public class CardLists {
             else
                 highPriorityCards.add(c);
         } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(null, "Can\'t add empty card to list");
+            System.err.println("Can\'t add empty card to list");
         }
         
         // System.out.printf("q %10s now in HP list at index %d \n",
@@ -63,7 +63,7 @@ public class CardLists {
             else
                 medPriorityCards.add(c);
         } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(null, "Can\'t add empty card to list");
+            System.err.println("Can\'t add empty card to list");
         }
     }
     public static void addToLowPriorityList(Card c) throws IllegalArgumentException {
@@ -73,7 +73,7 @@ public class CardLists {
             else
                 lowPriorityCards.add(c);
         } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(null, "Can\'t add empty card to list");
+            System.err.println("Can\'t add empty card to list");
         }
     }
     public static void removeFromHighPriorityList(Card c) {
