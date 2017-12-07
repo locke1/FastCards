@@ -3,8 +3,7 @@
 import java.awt.*;
 import javax.swing.*;
 import java.util.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class RecallFrame extends JFrame {
     private static GridBagLayout layout;
@@ -42,26 +41,32 @@ public class RecallFrame extends JFrame {
         showAnswerButton.addActionListener(
             new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent event) {
-                    // answer button (1) shows the answer,
-                    answerField.setText(currentCard.getStringAnswer());
-                    // (2) removes it from this priority list,
-                    // expecting since the user will add it to the end
-                    // of another one:
-                    CardLists.removeFromHighPriorityList(currentCard);
-                    CardLists.removeFromMedPriorityList(currentCard);
-                    CardLists.removeFromLowPriorityList(currentCard);
+                public void actionPerformed(ActionEvent event) throws NullPointerException {
+                    try {
+                        // answer button (1) shows the answer,
+                        answerField.setText(currentCard.getStringAnswer());
+                        // (2) removes it from this priority list,
+                        // expecting since the user will add it to the end
+                        // of another one:
+                        CardLists.removeFromHighPriorityList(currentCard);
+                        CardLists.removeFromMedPriorityList(currentCard);
+                        CardLists.removeFromLowPriorityList(currentCard);
+                    } catch (NullPointerException e) {
+                        JOptionPane.showMessageDialog(null, "There is no answer to show");
+                        RecallFrame.this.dispatchEvent(new WindowEvent(RecallFrame.this, WindowEvent.WINDOW_CLOSING));
+                    }
+                    
                 }
             }
         );            
 
         // insert priority buttons:
-        setHighPriorityButton = new JButton("Reset card with high priority,");
-        addComponent(setHighPriorityButton, 3, 0, 1, 1);
+        setHighPriorityButton = new JButton("Or, reset this card with high priority,");
+        addComponent(setHighPriorityButton, 4, 0, 1, 1);
         setHighPriorityButton.addActionListener(
             new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent event) {                
+                public void actionPerformed(ActionEvent event) throws IllegalArgumentException {                
                     CardLists.addToHighPriorityList(currentCard);
 
                     // next card button (3) advances currentCard
@@ -73,12 +78,12 @@ public class RecallFrame extends JFrame {
                 }
             }
         );
-        setMedPriorityButton = new JButton("with medium priority,");
-        addComponent(setMedPriorityButton, 3, 1, 1, 1);
+        setMedPriorityButton = new JButton("medium priority,");
+        addComponent(setMedPriorityButton, 4, 1, 1, 1);
         setMedPriorityButton.addActionListener(
             new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent event) {                
+                public void actionPerformed(ActionEvent event) throws IllegalArgumentException {                
                     CardLists.addToMedPriorityList(currentCard);
 
                     // next card button (3) advances currentCard
@@ -90,12 +95,12 @@ public class RecallFrame extends JFrame {
                 }
             }
         );
-        setLowPriorityButton = new JButton("with low priority,");
-        addComponent(setLowPriorityButton, 3, 2, 1, 1);
+        setLowPriorityButton = new JButton("or low priority.");
+        addComponent(setLowPriorityButton, 4, 2, 1, 1);
         setLowPriorityButton.addActionListener(
             new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent event) {
+                public void actionPerformed(ActionEvent event) throws IllegalArgumentException {
                     // save current card at the end of the list...
                     CardLists.addToLowPriorityList(currentCard);
                     // next card button (3) advances currentCard
@@ -107,22 +112,33 @@ public class RecallFrame extends JFrame {
                 }
             }
         );
-        setNoPriorityButton = new JButton("or, \"I don\'t need to see this card again!\"");
-        setLowPriorityButton.addActionListener(
+        setNoPriorityButton = new JButton("Show next card and \"I don\'t need to see this card again.\"");
+        setNoPriorityButton.addActionListener(
             new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent event) {
-                    // next card button (3) advances currentCard
-                    // without re-adding it to a list.
-                    currentCard = CardLists.getNextCard();
-                    // and (4) shows the next question:
-                    repaint();
-                    answerField.setText("");
-                    WelcomeFrame.resetCounterLabels();
+                public void actionPerformed(ActionEvent event) throws NullPointerException {
+                    try {
+                        if (CardLists.isEmpty()) {
+                            throw new NullPointerException();
+                        } else {
+                            currentCard = CardLists.getNextCard();
+                            // and (4) shows the next question:
+                            repaint();
+                            answerField.setText("");
+                        }
+                    } catch (NullPointerException e) {
+                        repaint();
+                        answerField.setText("");
+                        JOptionPane.showMessageDialog(null, "There are no more cards!");
+                        RecallFrame.this.dispatchEvent(new WindowEvent(RecallFrame.this, WindowEvent.WINDOW_CLOSING));
+                    }
+                    finally {
+                        WelcomeFrame.resetCounterLabels();
+                    }
                 }
             }
         );
-        addComponent(setNoPriorityButton, 4, 0, 4, 1);
+        addComponent(setNoPriorityButton, 3, 0, 4, 1);
     }
     
     private void addComponent(Component component,
@@ -137,14 +153,25 @@ public class RecallFrame extends JFrame {
 
     private class GraphicsContext extends JPanel {
         public GraphicsContext() {
+            // get the first card:
             currentCard = CardLists.getNextCard();
         }
         @Override
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            setBackground(Color.WHITE);
+            setBackground(Color.LIGHT_GRAY);
             g.setColor(Color.BLUE);
-            g.drawString(currentCard.getQuestion(), 150, 50);
+            write(g);
+        }
+        public void write(Graphics g) throws NullPointerException {
+            try {
+                if (CardLists.isEmpty())
+                    g.drawString("Close this window before entering more cards!", 100, 50);
+                else
+                    g.drawString(currentCard.getQuestion(), 100, 50);
+            } catch (NullPointerException e) {
+                // JOptionPane.showMessageDialog(RecallFrame.this, "NullPointerException in paintComponent");
+            }
         }
     }
         

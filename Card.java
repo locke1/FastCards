@@ -5,28 +5,11 @@ import javax.swing.JOptionPane;
 public class Card {
     private String question;
     private String stringAnswer;
-    private int intAnswer;
-    private boolean ansIsString;
-    private boolean ansIsInt;
     // use two bools for more robust control flow
 
     public Card(String q, String a) {
         question = q;
         stringAnswer = a;
-    }
-
-    // predicate methods:
-    public boolean ansIsString() {
-        return ansIsString;
-    }
-    public boolean ansIsInt() {
-        return ansIsInt;
-    }
-    public void setAnsIsString(boolean b) {
-        ansIsString = b;
-    } 
-    public void setAnsIsInt(boolean b) {
-        ansIsInt = b;
     }
 
     // settors, getters:
@@ -35,26 +18,40 @@ public class Card {
     }
     public String getQuestion() throws NullPointerException {
         try {
-            if (this != null)
+            if (this == null)
+                throw new NullPointerException();
+            else
                 return this.question;
-            else throw new NullPointerException();
         } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(null, "can't get a question because there are no more cards");
+            // JOptionPane.showMessageDialog(null, "NullPointerException in getQuestion");
             return null;
         }
     }
-    public void setStringAnswer(String a) {
-        stringAnswer = a;
-        setAnsIsString(true);
+
+    public void setStringAnswer(String a) throws IllegalArgumentException {
+        try {
+            if (a.equals(""))
+                throw new IllegalArgumentException();
+            else
+                stringAnswer = a;
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, "Cannot create card with empty fields");
+        }
     }
     public String getStringAnswer() {
-        return stringAnswer;
+        try {
+            if (this == null)
+                throw new NullPointerException();
+            else
+                return this.stringAnswer;
+        } catch (NullPointerException e) {
+            // JOptionPane.showMessageDialog(null, "NullPointerException in getQuestion");
+            return null;
+        }
     }
-    public void setIntAnswer(int a) {
-        intAnswer = a;
-        setAnsIsInt(true);
-    }
-    public int getIntAnswer() {
-        return intAnswer;
+    @Override
+    public String toString() {
+        String s = String.format("%s, %s", getQuestion(), getStringAnswer());
+        return s;
     }
 }

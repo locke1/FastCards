@@ -27,8 +27,9 @@ public class CardLists {
                 throw new NullPointerException();
             }
         } catch (NullPointerException e) {
-            // e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "There are no cards");
+            String s = "NullPointerException thrown in getNextCard()";
+            // JOptionPane.showMessageDialog(null, s);
+            WelcomeFrame.resetCounterLabels();
             return null;
         }
     }
@@ -42,20 +43,38 @@ public class CardLists {
     public static ArrayList<Card> getLowPriorityList() {
         return lowPriorityCards;
     }
-    public static void addToHighPriorityList(Card c) {
-        highPriorityCards.add(c);
+    public static void addToHighPriorityList(Card c) throws IllegalArgumentException {
+        try {
+            if (c == null)
+                throw new IllegalArgumentException("Can\'t add empty card to list");
+            else
+                highPriorityCards.add(c);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, "Can\'t add empty card to list");
+        }
+        
         // System.out.printf("q %10s now in HP list at index %d \n",
         //     c.getQuestion(), highPriorityCards.indexOf(c));
     }
-    public static void addToMedPriorityList(Card c) {
-        medPriorityCards.add(c);
-        // System.out.printf("q %10s now in MP list at index %d \n",
-        //     c.getQuestion(), medPriorityCards.indexOf(c));
+    public static void addToMedPriorityList(Card c) throws IllegalArgumentException {
+        try {
+            if (c == null)
+                throw new IllegalArgumentException("Can\'t add empty card to list");
+            else
+                medPriorityCards.add(c);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, "Can\'t add empty card to list");
+        }
     }
-    public static void addToLowPriorityList(Card c) {
-       lowPriorityCards.add(c);
-       // System.out.printf("q %10s now in LP list at index %d \n",
-       //      c.getQuestion(), lowPriorityCards.indexOf(c));
+    public static void addToLowPriorityList(Card c) throws IllegalArgumentException {
+        try {
+            if (c == null)
+                throw new IllegalArgumentException("Can\'t add empty card to list");
+            else
+                lowPriorityCards.add(c);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, "Can\'t add empty card to list");
+        }
     }
     public static void removeFromHighPriorityList(Card c) {
         highPriorityCards.remove(c);
@@ -65,5 +84,13 @@ public class CardLists {
     }
     public static void removeFromLowPriorityList(Card c) {
         lowPriorityCards.remove(c);
+    }
+    public static boolean isEmpty() {
+        if (highPriorityCards.size() == 0 &&
+            medPriorityCards.size() == 0 &&
+            lowPriorityCards.size() == 0)    
+            return true;
+        else
+            return false;
     }
 }
