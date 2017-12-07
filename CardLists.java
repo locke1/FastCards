@@ -14,6 +14,7 @@ public class CardLists {
         lowPriorityCards = new ArrayList<Card>();
     }
 
+    // go through high list, then med list, then low list:
     public static Card getNextCard() throws NullPointerException {
         try {
             if (highPriorityCards.size() != 0)
@@ -43,18 +44,18 @@ public class CardLists {
     }
     public static void addToHighPriorityList(Card c) {
         highPriorityCards.add(c);
-        System.out.printf("q %10s now in HP list at index %d \n",
-            c.getQuestion(), highPriorityCards.indexOf(c));
+        // System.out.printf("q %10s now in HP list at index %d \n",
+        //     c.getQuestion(), highPriorityCards.indexOf(c));
     }
     public static void addToMedPriorityList(Card c) {
         medPriorityCards.add(c);
-        System.out.printf("q %10s now in MP list at index %d \n",
-            c.getQuestion(), medPriorityCards.indexOf(c));
+        // System.out.printf("q %10s now in MP list at index %d \n",
+        //     c.getQuestion(), medPriorityCards.indexOf(c));
     }
     public static void addToLowPriorityList(Card c) {
        lowPriorityCards.add(c);
-       System.out.printf("q %10s now in LP list at index %d \n",
-            c.getQuestion(), lowPriorityCards.indexOf(c));
+       // System.out.printf("q %10s now in LP list at index %d \n",
+       //      c.getQuestion(), lowPriorityCards.indexOf(c));
     }
     public static void removeFromHighPriorityList(Card c) {
         highPriorityCards.remove(c);

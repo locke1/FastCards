@@ -50,15 +50,46 @@ public class EntryFrame extends JFrame {
                     Card card = new Card(q, a);
                     CardLists.addToHighPriorityList(card);
 
-                    questionField.setText("Got it. Enter another question here...");
+                    questionField.setText("Added to high priority list. Enter another question here...");
                     answerField.setText("Enter another answer here...");
+                    WelcomeFrame.resetCounterLabels();
                 }
             }
         );
         addWithMedPriorityButton = new JButton("Add Card with Medium Priority");
         addComponent(addWithMedPriorityButton, 3, 1, 1, 1);
+        addWithMedPriorityButton.addActionListener(
+            new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent event) {
+                    String q = questionField.getText();
+                    String a = answerField.getText();
+                    Card card = new Card(q, a);
+                    CardLists.addToMedPriorityList(card);
+
+                    questionField.setText("Added to Med priority list. Enter another question here...");
+                    answerField.setText("Enter another answer here...");
+                    WelcomeFrame.resetCounterLabels();
+                }
+            }
+        );
         addWithLowPriorityButton = new JButton("Add Card with Low Priority");
         addComponent(addWithLowPriorityButton, 3, 2, 1, 1);
+        addWithLowPriorityButton.addActionListener(
+            new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent event) {
+                    String q = questionField.getText();
+                    String a = answerField.getText();
+                    Card card = new Card(q, a);
+                    CardLists.addToLowPriorityList(card);
+
+                    questionField.setText("Added to low priority list. Enter another question here...");
+                    answerField.setText("Enter another answer here...");
+                    WelcomeFrame.resetCounterLabels();
+                }
+            }
+        );
 
         // create new card button handler adds Card to RecallFrame.addHighPriorityCard(newCard);
     }
