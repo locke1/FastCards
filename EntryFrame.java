@@ -39,7 +39,7 @@ public class EntryFrame extends JFrame {
         answerField.setText("Enter an answer here...");
         addComponent(answerField, 1, 0, 4, 1);
 
-        // insert priority buttons:
+        // insert priority buttons and register handers:
         addWithHighPriorityButton = new JButton("Add Card with High Priority");
         addComponent(addWithHighPriorityButton, 3, 0, 1, 1);
         addWithHighPriorityButton.addActionListener(
@@ -52,6 +52,7 @@ public class EntryFrame extends JFrame {
                     CardLists.addToHighPriorityList(card);
                     questionField.setText("Added to high priority list. Enter another question here...");
                     answerField.setText("Enter another answer here...");
+                    // update the counter labels:
                     WelcomeFrame.resetCounterLabels();
                 }
             }

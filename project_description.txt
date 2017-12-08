@@ -1,0 +1,14 @@
+// Program: FastCards
+// Written by: Michael Roffo
+// Description: A simple flash-cards program with the following features:
+//  - Welcome screen offers entry and review modes.
+//  - Takes question and answer sides of flash cards from JTextFields.
+//  - Maintains separate lists of high, medium, and low priority cards.
+//  - High cards are reviewed first, followed by medium cards and finally by low cards.
+//  - Unfinished high cards are saved between sessions in cards.txt.
+//  - Welcome screen shows counters of how many cards are in each list.
+//  - When reviewing cards, user can remove the card from the deck (gone forever!), or add it back into high, med, or low deck.
+// Challenges: Handling lots of NullPointerExceptions when the CardLists were empty.
+// Time Spent: 18 hours
+
+// COMMIT HISTORY:

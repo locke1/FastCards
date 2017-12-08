@@ -1,5 +1,5 @@
-// CreateCardFiles outputs new cards to txt files,
-// which can then be automagically inputted by FastCards.
+// CreateCardFiles outputs remainign high cards to cards.txt,
+// which can then be inputted back into FastCards by ReadCardFile.
 // by locke1 Thu Dec  7 13:00:47 2017
 import java.io.*;
 import java.lang.SecurityException;
@@ -51,10 +51,12 @@ public class CreateCardFiles {
                 count++;
             }
             // then append all med priority cards to stringBuilder...
-            // this System.out does NOT print. Control flow in try block seems to
-            // stop after the first while loop. Why?
-            System.out.println(CardLists.getMedPriorityList().size() != 0);
+            // try block code after this point is NOT executing. Why?
+            // Medium and low cards are not being saved... lol just adjust
+            // the spec such that only high cards are saved.
+            System.out.println("i am right before second while loop");
             while (CardLists.getMedPriorityList().size() != 0) {
+                System.out.println("i am inside second while loop");
                 String q = CardLists.getMedPriorityList().get(j).getQuestion();
                 String a = CardLists.getMedPriorityList().get(j).getStringAnswer();
                 stringBuilder.append(String.format("%s\n%s\n", q, a));

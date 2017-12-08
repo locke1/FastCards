@@ -30,6 +30,7 @@ public class WelcomeFrame extends JFrame {
             }
         );
 
+        // set layout settings:
         layout = new GridBagLayout();
         setLayout(layout);
         constraints = new GridBagConstraints();
@@ -37,12 +38,15 @@ public class WelcomeFrame extends JFrame {
         constraints.weightx = 3;
         constraints.weighty = 5;
 
+        // create and place welcomeLabel:
         welcomeLabel = new JLabel("FastCards", SwingConstants.CENTER);
         welcomeLabel.setFont(new Font("SansSerif", Font.BOLD, 40));
         addComponent(welcomeLabel, 0, 0, 3, 1);
 
+        // create and place recallButton:
         recallButton = new JButton("Review cards");
         addComponent(recallButton, 1, 0, 3, 1);
+        // register the listener:
         recallButton.addActionListener(
             new ActionListener() {
                 @Override 
@@ -52,6 +56,7 @@ public class WelcomeFrame extends JFrame {
             }
         );
 
+        // create, add, register entryButton:
         entryButton = new JButton("Enter cards");
         addComponent(entryButton, 2, 0, 3, 1);
         entryButton.addActionListener(
@@ -63,6 +68,7 @@ public class WelcomeFrame extends JFrame {
             }
         );
 
+        // intialize counter labels:
         highCountLabel = new JLabel(String.format(
             "High cards: %d", CardLists.getHighPriorityList().size()));
         addComponent(highCountLabel, 3, 0, 1, 1);
@@ -72,7 +78,10 @@ public class WelcomeFrame extends JFrame {
         lowCountLabel = new JLabel(String.format(
             "Low cards: %d", CardLists.getLowPriorityList().size()));
         addComponent(lowCountLabel, 3, 2, 1, 1);
-        noteLabel = new JLabel("Note: to save unfinished cards after exiting, exit with the mouse");
+
+        // this label contains notes on properly saving high cards
+        // in cards.txt, for next time the program is opened.
+        noteLabel = new JLabel("Note: to save unfinished high cards after exiting, exit with the mouse");
         noteLabel.setFont(new Font("SansSerif", Font.PLAIN, 12));
         addComponent(noteLabel, 4, 0, 3, 1);
 
@@ -90,6 +99,7 @@ public class WelcomeFrame extends JFrame {
         entryFrame.setSize(600, 500);
         entryFrame.setVisible(true);
     }
+    // exactly what it sounds like:
     public static void resetCounterLabels() {
         highCountLabel.setText(String.format(
             "High cards: %d", CardLists.getHighPriorityList().size()));
@@ -98,6 +108,7 @@ public class WelcomeFrame extends JFrame {
         lowCountLabel.setText(String.format(
             "Low cards: %d", CardLists.getLowPriorityList().size()));
     }
+    // helper method for working with GridBagLayout:
     private void addComponent(Component component,
         int row, int column, int width, int height) {
         constraints.gridx = column;

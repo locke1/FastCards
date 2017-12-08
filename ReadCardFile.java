@@ -1,4 +1,4 @@
-// ReadCardFile add any contents of cards.txt into CardLists.
+// When FastCards opens, ReadCardFile adds any contents of cards.txt into CardLists.
 // WelcomeFrame will call this class when the window first opens.
 // * heavily inspired by Figure 15.6 from Deitel Java How To Program *
 // by locke1 Thu Dec  7 14:42:18 2017
@@ -27,14 +27,14 @@ public class ReadCardFile {
                 questions.add(input.nextLine());
                 answers.add(input.nextLine());
             }
-            System.out.printf("ReadCardFile: loaded %d question(s) and %d answer(s) from cards.txt\n",
-                questions.size(), answers.size());
+            System.out.printf("ReadCardFile: loaded %d card(s) from cards.txt\n",
+                questions.size());
 
             for (int j = 0; j < questions.size(); j++) {
                 CardLists.addToHighPriorityList(new Card(questions.get(j), answers.get(j)));
             }
         } catch (NoSuchElementException noSuchElementException) {
-            System.err.println("File not formatted properly.");
+            System.err.println("NoSuchElementException. Input file is improperly formatted.");
         } catch (IllegalStateException illegalStateException) {
             System.err.println("Error reading from file.");
         } finally {

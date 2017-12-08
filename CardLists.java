@@ -1,4 +1,5 @@
-// CardLists maintains the card priority lists for FastCards;
+// CardLists maintains lists of flashcards,
+// each with different priority level.
 // locke1 Wed Dec  6 10:20:03 2017
 
 import java.awt.*;

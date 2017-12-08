@@ -1,0 +1,25 @@
+// Program: FastCards
+// Written by: Michael Roffo
+// Description: A simple flash-cards program with the following features:
+
+// Challenges: Learning new Layout managers.
+// Time Spent: 20 hours
+// 
+//                   Revision History
+// Date:                   By:               Action:
+// ---------------------------------------------------
+// 11/16/17 (MR) moved graphics context from another file
+// into a private class in this same file.
+// runtime errors when using shape objects
+// local to the paintComponent method...
+// works fine but with sloppy static methods. argh.
+// 12/1/17 (MR) lots of edits the last few weeks that I forgot to
+// write formal revision reports for:
+// CREATED POLYMORPHIC DRAW METHODS for different shapes. That works great.
+// Used two nested for-loops to automatically update Font when new
+//     font-family or font-style is selected from menus.
+// Background of resultTextArea changes.
+// Shapes automatically redraw when different shape is selected.
+// 
+// NOTE: JTEXTAREA DOESN'T SEEM TO SUPPORT COLORED FONTS?
+// I WAS NOT AT ALL SURE HOW TO IMPLEMENT THAT PART OF THE ASSIGNMENT.
